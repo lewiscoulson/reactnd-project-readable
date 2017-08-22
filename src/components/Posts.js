@@ -8,7 +8,9 @@ class Posts extends Component {
 		return (
 			<ul>
 				{posts && posts.map((item) => {
-					return (<div>{item.title}</div>)
+					return (<div>
+						<Link to={`post/${item.id}`}>{item.title}</Link>
+					</div>)
 				})}
 			</ul>
 		)

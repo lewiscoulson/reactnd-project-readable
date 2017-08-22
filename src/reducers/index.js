@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import {
-  GET_POSTS
+  GET_POSTS,
+  GET_POST
 } from '../actions/postActions';
 import {
   GET_CATEGORIES
@@ -12,6 +13,11 @@ function posts (state = {}, action) {
       return {
         ...state,
         posts: action.posts,
+      }
+    case GET_POST :
+      return {
+        ...state,
+        currentPost: action.post,
       }
     default :
       return state

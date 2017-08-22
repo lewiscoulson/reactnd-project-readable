@@ -10,19 +10,22 @@ import {getCategories} from '../actions/categoryActions';
 import {getPosts} from '../actions/postActions';
 
 class Root extends Component {
+	componentDidMount() {
+		this.props.getCategories();
+		this.props.getPosts();
+	}
+
 	render() {
-		let {categories, getCategories, posts, getPosts} = this.props;
+		let {categories, posts} = this.props;
+		
 		return (
 			<div>
-				Root
-				<button onClick={getCategories}>get categories</button>
 				<Categories
 					categories={categories} />
 
 				<Posts
 					posts={posts} />
-					
-				<button onClick={getPosts}>get posts</button>
+
 				<Link to="/createEdit">Add new post</Link>
 			</div>
 		)

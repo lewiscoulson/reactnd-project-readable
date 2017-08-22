@@ -1,12 +1,20 @@
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 
-export function getCategories () {
+const getCategoriesSuccess = (categories) => {
   return {
     type: GET_CATEGORIES,
-    categories: [
-    	{name: 'first category'},
-    	{name: 'second category'},
-    	{name: 'third category'},
-    ]
-  }
+    categories
+  };
+}
+
+export function getCategories () {
+	return function (dispatch) {
+		return fetch('http://localhost:5001/categories', { headers: { 'Authorization': 'whatever-you-want' }})
+		.then((response) => {
+			return response.json()
+		})
+		.then(({categories}) => {
+			dispatch(getCategoriesSuccess(categories))
+		});
+	}; 
 }
