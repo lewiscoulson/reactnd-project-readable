@@ -7,11 +7,13 @@ class PostForm extends Component {
 	}
 
 	render() {
-		const {title} = this.props;
+		const {post} = this.props;
 
 		return (
 			<form>
-				<input type="text" value={title} />
+				create edit
+				<input type="text" value={post ? post.title : ''} />
+				<textarea value={post ? post.body : ''}></textarea>
 			</form>
 		)
 	}

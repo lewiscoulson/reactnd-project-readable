@@ -7,7 +7,7 @@ import Categories from '../components/Categories';
 import Posts from '../components/Posts';
 
 import {getCategories} from '../actions/categoryActions';
-import {getPosts} from '../actions/postActions';
+import {getPosts, setPostsSortMethod} from '../actions/postActions';
 
 class Root extends Component {
 	componentDidMount() {
@@ -16,14 +16,16 @@ class Root extends Component {
 	}
 
 	render() {
-		let {categories, posts} = this.props;
-		
+		let {categories, posts, sortMethod, setPostsSortMethod} = this.props;
+
 		return (
 			<div>
 				<Categories
 					categories={categories} />
 
 				<Posts
+					sortMethod={sortMethod}
+					setPostsSortMethod={setPostsSortMethod}
 					posts={posts} />
 
 				<Link to="/createEdit">Add new post</Link>
@@ -35,14 +37,16 @@ class Root extends Component {
 function mapStateToProps ({categories, posts}) {
   return {
   	categories: categories.categories,
-  	posts: posts.posts
+  	posts: posts.posts,
+  	sortMethod: posts.sortMethod
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
   	getCategories: () => dispatch(getCategories()),
-  	getPosts: () => dispatch(getPosts())
+  	getPosts: () => dispatch(getPosts()),
+  	setPostsSortMethod: (sortMethod) => dispatch(setPostsSortMethod(sortMethod))
   }
 }
 

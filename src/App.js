@@ -23,13 +23,11 @@ class App extends Component {
 
 	    <Route exact path="/post/:id" component={Post} />
 
-	    <Route exact path="/category/:name" render={() => (
-	        <Category />
-	    )} />
+	    <Route exact path="/category/:name" component={Category} />
 
-	    <Route exact path="/createEdit/:id" render={() => (
-	        <CreateEdit />
-	    )} />
+	    <Route exact path="/createEdit" component={CreateEdit} />
+
+	    <Route exact path="/createEdit/:id" component={CreateEdit} />
       </div>
     );
   }

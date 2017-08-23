@@ -7,7 +7,7 @@ import {getPost} from '../actions/postActions';
 
 class Post extends Component {
 	componentDidMount() {
-		let postID = this.props.match.params.id;
+		let postID = this.props.match.params.id;		
 		this.props.getPost(postID);
 	}
 
@@ -19,8 +19,8 @@ class Post extends Component {
 				{currentPost && <div>
 					<h2>{currentPost.title}</h2>
 					<p>{currentPost.body}</p>
+					<Link to={`/createEdit/${currentPost.id}`}>Edit</Link>
 				</div>}
-				<Link to="/createEdit/1">Edit</Link>
 			</div>
 		)
 	}

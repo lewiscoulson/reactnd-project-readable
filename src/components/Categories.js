@@ -14,7 +14,7 @@ class Categories extends Component {
 				<div>controls</div>
 				<ul>
 					{categories && categories.map((item) => {
-						return (<div>{item.name}</div>)
+						return (<Link to={`/category/${item.name}`}>{item.name}</Link>)
 					})}
 				</ul>
 			</div>
