@@ -3,37 +3,59 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Categories from '../components/Categories';
 import Posts from '../components/Posts';
 
-import {getCategoryPosts} from '../actions/postActions';
+import {getCategories} from '../actions/categoryActions';
+import {getPosts, getCategoryPosts, setPostsSortMethod} from '../actions/postActions';
 
 class Category extends Component {
 	componentDidMount() {
 		let category = this.props.match.params.name;
 		this.props.getCategoryPosts(category);
+		this.props.getCategories();
+	}
+
+	componentWillUpdate(nextProps) {
+		if (nextProps.match.params.name !== this.props.match.params.name) {
+			let category = nextProps.match.params.name;
+			this.props.getCategoryPosts(category);
+			this.props.getCategories();
+		}
 	}
 
 	render() {
-		let {posts} = this.props;
+		let {categories, posts, sortMethod, setPostsSortMethod} = this.props;
 
 		return (
 			<div>
+				<Categories
+					categories={categories} />
+
 				<Posts
+					sortMethod={sortMethod}
+					setPostsSortMethod={setPostsSortMethod}
 					posts={posts} />
+
+				<Link to="/createEdit">Add new post</Link>
 			</div>
 		)
 	}
 }
 
-function mapStateToProps ({posts}) {
+function mapStateToProps ({categories, posts}) {
   return {
-  	posts: posts.posts
+  	categories: categories.categories,
+  	posts: posts.posts,
+  	sortMethod: posts.sortMethod
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-  	getCategoryPosts: (category) => dispatch(getCategoryPosts(category))
+  	getCategories: () => dispatch(getCategories()),
+  	getCategoryPosts: (category) => dispatch(getCategoryPosts(category)),
+  	setPostsSortMethod: (sortMethod) => dispatch(setPostsSortMethod(sortMethod))
   }
 }
 

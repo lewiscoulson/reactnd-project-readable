@@ -8,6 +8,10 @@ import {
 import {
   GET_CATEGORIES
 } from '../actions/categoryActions';
+import {
+  GET_COMMENTS,
+  SET_COMMENTS_SORT_METHOD,
+} from '../actions/commentActions';
 
 function posts (state = {}, action) {
   switch (action.type) {
@@ -17,10 +21,10 @@ function posts (state = {}, action) {
         posts: action.posts,
       }
     case GET_CATEGORY_POSTS :
-        return {
-          ...state,
-          posts: action.posts,
-        }
+      return {
+        ...state,
+        posts: action.posts,
+      }
     case GET_POST :
       return {
         ...state,
@@ -48,7 +52,25 @@ function categories (state = {}, action) {
   }
 }
 
+function comments (state = {}, action) {
+  switch (action.type) {
+    case GET_COMMENTS :
+      return {
+        ...state,
+        currentComments: action.comments,
+      }
+    case SET_COMMENTS_SORT_METHOD :
+      return {
+        ...state,
+        sortMethod: action.sortMethod,
+      }
+    default :
+      return state
+  }
+}
+
 export default combineReducers({
   posts,
-  categories
+  categories,
+  comments
 })
