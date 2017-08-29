@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 
 import Comments from '../components/Comments';
 import PostVote from '../components/PostVote';
+import CommentForm from '../components/CommentForm';
 
 import {getPost, deletePost, votePost} from '../actions/postActions';
-import {getComments, setCommentsSortMethod} from '../actions/commentActions';
+import {getComments, setCommentsSortMethod, voteComment, addComment} from '../actions/commentActions';
 
 class Post extends Component {
 	componentDidMount() {
@@ -18,7 +19,7 @@ class Post extends Component {
 
 	render() {
 		let {currentPost, currentComments, sortMethod, setCommentsSortMethod,
-		deletePost, votePost} = this.props;
+		deletePost, votePost, voteComment, addComment} = this.props;
 		let formattedTime;
 
 		if (currentPost) {
@@ -41,9 +42,12 @@ class Post extends Component {
 				</div>}
 
 				{currentComments && <Comments
+					handleVote={voteComment}
 					sortMethod={sortMethod}
 					setCommentsSortMethod={setCommentsSortMethod}
 					comments={currentComments} />}
+
+				{currentPost && <CommentForm post={currentPost} addComment={addComment} />}
 			</div>
 		)
 	}
@@ -62,6 +66,8 @@ function mapDispatchToProps (dispatch) {
   	getPost: (postID) => dispatch(getPost(postID)),
   	deletePost: (postID) => dispatch(deletePost(postID)),
   	votePost: (postID, option) => dispatch(votePost(postID, option)),
+  	addComment: (options) => dispatch(addComment(options)),
+  	voteComment: (commentID, option) => dispatch(voteComment(commentID, option)),
   	getComments: (postID) => dispatch(getComments(postID)),
   	setCommentsSortMethod: (sortMethod) => dispatch(setCommentsSortMethod(sortMethod))
   }

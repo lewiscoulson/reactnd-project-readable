@@ -119,7 +119,7 @@ export function votePost (postID, option) {
 	return function (dispatch) {
 		return fetch(`http://localhost:5001/posts/${postID}`, 
 			{ 
-				headers: { 'Authorization': 'whatever-you-want' }, 
+				headers: { 'Authorization': 'whatever-you-want', 'Content-Type': 'application/json'},
 				method: 'POST',
 				body: JSON.stringify({option: option})
 			})

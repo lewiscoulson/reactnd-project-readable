@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import CommentVote from './CommentVote';
+
 class Comments extends Component {
 	componentDidMount() {
 	}
 
 	render() {
-		let {comments, sortMethod, setCommentsSortMethod} = this.props;
+		let {comments, sortMethod, setCommentsSortMethod, handleVote} = this.props;
 		let sortedComments;
 
 		if (comments) {
@@ -38,6 +40,7 @@ class Comments extends Component {
 							{item.body} by {item.author}
 							votes: {item.voteScore}
 							time: {item.timestamp}
+							<CommentVote commentID={item.id} handleVote={handleVote} />
 						</div>)
 					})}
 				</ul>
