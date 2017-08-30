@@ -8,7 +8,7 @@ import PostVote from '../components/PostVote';
 import CommentForm from '../components/CommentForm';
 
 import {getPost, deletePost, votePost} from '../actions/postActions';
-import {getComments, setCommentsSortMethod, voteComment, addComment} from '../actions/commentActions';
+import {getComments, setCommentsSortMethod, voteComment, addComment, editComment, deleteComment} from '../actions/commentActions';
 
 class Post extends Component {
 	componentDidMount() {
@@ -18,8 +18,8 @@ class Post extends Component {
 	}
 
 	render() {
-		let {currentPost, currentComments, sortMethod, setCommentsSortMethod,
-		deletePost, votePost, voteComment, addComment} = this.props;
+		let {currentPost, currentComment, currentComments, sortMethod, setCommentsSortMethod,
+		deletePost, votePost, voteComment, addComment, editComment, deleteComment} = this.props;
 		let formattedTime;
 
 		if (currentPost) {
@@ -43,11 +43,13 @@ class Post extends Component {
 
 				{currentComments && <Comments
 					handleVote={voteComment}
+					handleEdit={editComment}
+					handleDelete={deleteComment}
 					sortMethod={sortMethod}
 					setCommentsSortMethod={setCommentsSortMethod}
 					comments={currentComments} />}
 
-				{currentPost && <CommentForm post={currentPost} addComment={addComment} />}
+				{currentPost && <CommentForm post={currentPost} comment={currentComment} addComment={addComment} />}
 			</div>
 		)
 	}
@@ -57,6 +59,7 @@ function mapStateToProps ({posts, comments}) {
   return {
   	currentPost: posts.currentPost,
   	currentComments: comments.currentComments,
+  	currentComment: comments.currentComment,
   	sortMethod: comments.sortMethod
   }
 }
@@ -68,6 +71,8 @@ function mapDispatchToProps (dispatch) {
   	votePost: (postID, option) => dispatch(votePost(postID, option)),
   	addComment: (options) => dispatch(addComment(options)),
   	voteComment: (commentID, option) => dispatch(voteComment(commentID, option)),
+  	editComment: (comment) => dispatch(editComment(comment)),
+  	deleteComment: (commentID) => dispatch(deleteComment(commentID)),
   	getComments: (postID) => dispatch(getComments(postID)),
   	setCommentsSortMethod: (sortMethod) => dispatch(setCommentsSortMethod(sortMethod))
   }

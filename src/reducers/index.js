@@ -10,6 +10,7 @@ import {
 } from '../actions/categoryActions';
 import {
   GET_COMMENTS,
+  EDIT_COMMENT,
   SET_COMMENTS_SORT_METHOD,
 } from '../actions/commentActions';
 
@@ -63,6 +64,11 @@ function comments (state = {}, action) {
       return {
         ...state,
         sortMethod: action.sortMethod,
+      }
+    case EDIT_COMMENT :
+      return {
+        ...state,
+        currentComment: action.comment,
       }
     default :
       return state

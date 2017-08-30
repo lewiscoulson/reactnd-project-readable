@@ -24,12 +24,12 @@ class CommentForm extends Component {
 	}
 
 	render() {
-		const {post, addComment} = this.props;
+		const {post, addComment, comment} = this.props;
 
 		return (
 			<form onSubmit={this.handleSubmit}>
-        		<input type="text" name="author" />
-				<textarea name="body"></textarea>
+        		<input type="text" name="author" value={comment ? comment.author : ''} />
+				<textarea name="body" value={comment ? comment.body : ''}></textarea>
 				<button type="submit">submit</button>
 			</form>
 		)
