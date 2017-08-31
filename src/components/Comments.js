@@ -3,13 +3,19 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import CommentVote from './CommentVote';
+import EditCommentForm from './EditCommentForm';
 
 class Comments extends Component {
+	state = {
+		author: '',
+		body: ''
+	}
+
 	componentDidMount() {
 	}
 
 	render() {
-		let {comments, handleEdit, handleDelete, sortMethod, setCommentsSortMethod, handleVote} = this.props;
+		let {comments, handleEdit, handleDelete, sortMethod, setCommentsSortMethod, handleVote, handleUpdate, currentComment, isEditing} = this.props;
 		let sortedComments;
 
 		if (comments) {
@@ -43,6 +49,11 @@ class Comments extends Component {
 							<CommentVote commentID={item.id} handleVote={handleVote} />
 							<button onClick={() => handleEdit(item)}>edit</button>
 							<button onClick={() => handleDelete(item.id)}>delete</button>
+
+
+							{(currentComment && isEditing) && item.id === currentComment.id && <EditCommentForm
+								handleUpdate={handleUpdate}
+								comment={item} />}
 						</div>)
 					})}
 				</ul>

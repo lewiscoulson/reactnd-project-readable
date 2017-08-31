@@ -4,6 +4,7 @@ export const VOTE_COMMENT = 'VOTE_COMMENT';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 
 export function getCommentsSuccess (comments) {
   return {
@@ -105,6 +106,30 @@ export function deleteComment (commentID) {
 		})
 		.then((comment) => {
 			dispatch(deleteCommentSuccess(comment))
+		});
+	}; 
+}
+
+export function updateCommentSuccess (comment) {
+  return {
+    type: UPDATE_COMMENT,
+    comment
+  }
+}
+
+export function updateComment (commentID, options) {
+	return function (dispatch) {
+		return fetch(`http://localhost:5001/comments/${commentID}`, 
+			{ 
+				headers: { 'Authorization': 'whatever-you-want', 'Content-Type': 'application/json'},
+				method: 'PUT',
+				body: JSON.stringify(options)
+			})
+		.then((response) => {
+			return response.json()
+		})
+		.then((comment) => {
+			dispatch(updateCommentSuccess(comment))
 		});
 	}; 
 }

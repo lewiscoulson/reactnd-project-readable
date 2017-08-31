@@ -6,6 +6,10 @@ class CommentForm extends Component {
 	componentDidMount() {
 	}
 
+	componentWillUpdate(nextProps, nextState) {
+
+	}
+
 	handleSubmit = (event) => {
 		event.preventDefault();
 
@@ -28,8 +32,9 @@ class CommentForm extends Component {
 
 		return (
 			<form onSubmit={this.handleSubmit}>
-        		<input type="text" name="author" value={comment ? comment.author : ''} />
-				<textarea name="body" value={comment ? comment.body : ''}></textarea>
+				<input type="text" name="author" />
+				<textarea name="body"></textarea>
+
 				<button type="submit">submit</button>
 			</form>
 		)

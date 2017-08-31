@@ -11,6 +11,7 @@ import {
 import {
   GET_COMMENTS,
   EDIT_COMMENT,
+  UPDATE_COMMENT,
   SET_COMMENTS_SORT_METHOD,
 } from '../actions/commentActions';
 
@@ -69,6 +70,12 @@ function comments (state = {}, action) {
       return {
         ...state,
         currentComment: action.comment,
+        isEditing: true
+      }
+    case UPDATE_COMMENT :
+      return {
+        ...state,
+        isEditing: false
       }
     default :
       return state
