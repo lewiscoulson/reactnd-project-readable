@@ -24,7 +24,7 @@ class EditCommentForm extends Component {
 		this.props.handleUpdate(this.props.comment.id, {
 			timestamp: new Date().getTime(),
 			body: this.state.body
-		});
+		}, this.props.postID);
 	}
 
 	render() {

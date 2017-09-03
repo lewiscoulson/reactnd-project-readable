@@ -51,9 +51,9 @@ class Post extends Component {
 			<div>
 				{currentPost && <div>
 					<h2>{currentPost.title}</h2>
-					<span>by {currentPost.author}</span>
-					<span>posted {formattedTime.toJSON()}</span><br />
-					<span>{currentPost.voteScore}</span>
+					<div>author: {currentPost.author}</div>
+					<div>comments: {currentPost.comments}</div>
+					<div>votes: {currentPost.voteScore}</div>
 					<p>{currentPost.body}</p>
 					<Link to={`/createEdit/${currentPost.id}`}>Edit</Link>
 					<PostVote
@@ -62,7 +62,8 @@ class Post extends Component {
 					<button onClick={() => deletePost(currentPost.id)}>Delete</button>
 				</div>}
 
-				{currentComments && <Comments
+				{currentPost && currentComments && <Comments
+					postID={currentPost.id}
 					handleVote={voteComment}
 					handleEdit={editComment}
 					handleDelete={deleteComment}
@@ -96,11 +97,11 @@ function mapDispatchToProps (dispatch) {
   	getPost: (postID) => dispatch(getPost(postID)),
   	deletePost: (postID) => dispatch(deletePost(postID)),
   	votePost: (postID, option) => dispatch(votePost(postID, option)),
-  	addComment: (options) => dispatch(addComment(options)),
-  	voteComment: (commentID, option) => dispatch(voteComment(commentID, option)),
-  	editComment: (comment) => dispatch(editComment(comment)),
-  	deleteComment: (commentID) => dispatch(deleteComment(commentID)),
-  	updateComment: (commentID, options) => dispatch(updateComment(commentID, options)),
+  	addComment: (options, postID) => dispatch(addComment(options, postID)),
+  	voteComment: (commentID, option, postID) => dispatch(voteComment(commentID, option, postID)),
+  	editComment: (comment, postID) => dispatch(editComment(comment, postID)),
+  	deleteComment: (commentID, postID) => dispatch(deleteComment(commentID, postID)),
+  	updateComment: (commentID, options, postID) => dispatch(updateComment(commentID, options, postID)),
   	getComments: (postID) => dispatch(getComments(postID)),
   	setCommentsSortMethod: (sortMethod) => dispatch(setCommentsSortMethod(sortMethod))
   }

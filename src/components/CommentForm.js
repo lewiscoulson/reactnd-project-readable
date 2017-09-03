@@ -24,7 +24,7 @@ class CommentForm extends Component {
 		options.timestamp = new Date().getTime();
 		options.parentId = this.props.post.id;
 
-		this.props.addComment(options);
+		this.props.addComment(options, this.props.post.id);
 	}
 
 	render() {
@@ -32,9 +32,16 @@ class CommentForm extends Component {
 
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<input type="text" name="author" />
-				<textarea name="body"></textarea>
-
+				<h3>Add new comment</h3>
+				<div>
+					<label htmlFor="author">author</label>
+					<input type="text" id="author" name="author" />
+				</div>
+				<div>
+					<label htmlFor="body">comment</label>
+					<textarea id="body" name="body"></textarea>
+				</div>
+				
 				<button type="submit">submit</button>
 			</form>
 		)

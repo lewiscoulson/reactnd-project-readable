@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
+import Post from './Post';
 
 class Posts extends Component {
 	render() {
@@ -21,19 +22,14 @@ class Posts extends Component {
 			});
 		}
 		
-		// TODO - sort posts by voteScore
 		return (<div>
 			<select value={sortMethod} onChange={(event) => {setPostsSortMethod(event.target.value)}}>
 				<option value="voteScore">voteScore</option>
 				<option value="timestamp">timestamp</option>
 			</select>
 			<ul>
-				{sortedPosts && sortedPosts.map((item) => {
-					return (<div>
-						<div>published: {item.timestamp}</div>
-						<div>votes: {item.voteScore}</div>
-						<Link to={`/post/${item.id}`}>{item.title}</Link>
-					</div>)
+				{sortedPosts && sortedPosts.filter(item => !item.deleted).map((item) => {
+					return (<Post post={item} />)
 				})}
 			</ul>
 		</div>)

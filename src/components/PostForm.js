@@ -6,14 +6,45 @@ class PostForm extends Component {
 	componentDidMount() {
 	}
 
+	handleSubmit = (event) => {
+		event.preventDefault();
+
+		let elems = event.currentTarget.elements;
+		let options = {};
+
+		for (let i = 0; i < elems.length; i++) {
+			options[elems[i].name] = elems[i].value;
+		}
+
+		options.id = Math.floor(Math.random() * 1000000);
+		options.timestamp = new Date().getTime();
+
+		this.props.createPost(options);
+	}
+
 	render() {
-		const {post} = this.props;
+		const {createPost} = this.props;
 
 		return (
-			<form>
-				create edit
-				<input type="text" value={post ? post.title : ''} />
-				<textarea value={post ? post.body : ''}></textarea>
+			<form onSubmit={this.handleSubmit}>
+				<h3>Create new post</h3>
+				<div>
+					<label htmlFor="title">title</label>
+					<input type="text" name="title" id="title" />
+				</div>
+				<div>
+					<label htmlFor="body">body</label>
+					<textarea name="body" id="body"></textarea>
+				</div>
+				<div>
+					<label htmlFor="category">category</label>
+					<input type="text" name="category" id="category" />
+				</div>
+				<div>
+					<label htmlFor="author">author</label>
+					<input type="text" name="author" id="author" />
+				</div>
+				<button type="submit">add post</button>
 			</form>
 		)
 	}

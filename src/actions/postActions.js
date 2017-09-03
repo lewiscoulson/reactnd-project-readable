@@ -5,6 +5,7 @@ export const DELETE_POST = 'DELETE_POST';
 export const SET_POSTS_SORT_METHOD = 'SET_POSTS_SORT_METHOD';
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const VOTE_POST = 'VOTE_POST';
+export const CREATE_POST = 'CREATE_POST';
 
 export function getPostsSuccess (posts) {
   return {
@@ -32,7 +33,7 @@ export function getPostSuccess (post) {
   }
 }
 
-export const getPost = (id, another) => {
+export const getPost = (id) => {
 	return function (dispatch) {
 		return fetch(`http://localhost:5001/posts/${id}`, { headers: { 'Authorization': 'whatever-you-want' }})
 		.then((response) => {
@@ -98,12 +99,14 @@ export function deletePostSuccess (post) {
 
 export function deletePost (postID) {
 	return function (dispatch) {
-		return fetch(`http://localhost:5001/posts/${postID}`, { headers: { 'Authorization': 'whatever-you-want' }, method: 'DELETE'})
-		.then((response) => {
-			return response.json()
-		})
-		.then((post) => {
-			dispatch(deletePostSuccess(post))
+		return fetch(`http://localhost:5001/posts/${postID}`, 
+			{ 
+				headers: { 'Authorization': 'whatever-you-want', 'Content-Type': 'application/json'},
+				method: 'DELETE'
+			})
+		.then((postID) => {
+			dispatch(deletePostSuccess(postID))
+			dispatch(getPosts())
 		});
 	}; 
 }
@@ -128,6 +131,33 @@ export function votePost (postID, option) {
 		})
 		.then((post) => {
 			dispatch(votePostSuccess(post))
+			dispatch(getPost(postID))
+			dispatch(getPosts())
+		});
+	}; 
+}
+
+export function createPostSuccess (post) {
+  return {
+    type: CREATE_POST,
+    post
+  }
+}
+
+export function createPost (options) {
+	return function (dispatch) {
+		return fetch('http://localhost:5001/posts', 
+			{ 
+				headers: { 'Authorization': 'whatever-you-want', 'Content-Type': 'application/json'},
+				method: 'POST',
+				body: JSON.stringify(options)
+			})
+		.then((response) => {
+			return response.json()
+		})
+		.then((post) => {
+			dispatch(createPostSuccess(post))
+			dispatch(getPosts())
 		});
 	}; 
 }

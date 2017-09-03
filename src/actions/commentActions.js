@@ -39,7 +39,7 @@ export function voteCommentSuccess (comment) {
   }
 }
 
-export function voteComment (commentID, option) {
+export function voteComment (commentID, option, postID) {
 	return function (dispatch) {
 		return fetch(`http://localhost:5001/comments/${commentID}`, 
 			{ 
@@ -52,6 +52,7 @@ export function voteComment (commentID, option) {
 		})
 		.then((comment) => {
 			dispatch(voteCommentSuccess(comment))
+			dispatch(getComments(postID))
 		});
 	}; 
 }
@@ -63,7 +64,7 @@ export function addCommentSuccess (comment) {
   }
 }
 
-export function addComment (options) {
+export function addComment (options, postID) {
 	return function (dispatch) {
 		return fetch(`http://localhost:5001/comments`, 
 			{ 
@@ -76,6 +77,7 @@ export function addComment (options) {
 		})
 		.then((comment) => {
 			dispatch(addCommentSuccess(comment))
+			dispatch(getComments(postID))
 		});
 	}; 
 }
@@ -94,7 +96,7 @@ export function deleteCommentSuccess (comment) {
   }
 }
 
-export function deleteComment (commentID) {
+export function deleteComment (commentID, postID) {
 	return function (dispatch) {
 		return fetch(`http://localhost:5001/comments/${commentID}`, 
 			{ 
@@ -106,6 +108,7 @@ export function deleteComment (commentID) {
 		})
 		.then((comment) => {
 			dispatch(deleteCommentSuccess(comment))
+			dispatch(getComments(postID))
 		});
 	}; 
 }
@@ -117,7 +120,7 @@ export function updateCommentSuccess (comment) {
   }
 }
 
-export function updateComment (commentID, options) {
+export function updateComment (commentID, options, postID) {
 	return function (dispatch) {
 		return fetch(`http://localhost:5001/comments/${commentID}`, 
 			{ 
@@ -130,6 +133,7 @@ export function updateComment (commentID, options) {
 		})
 		.then((comment) => {
 			dispatch(updateCommentSuccess(comment))
+			dispatch(getComments(postID))
 		});
 	}; 
 }
