@@ -6,6 +6,7 @@ export const SET_POSTS_SORT_METHOD = 'SET_POSTS_SORT_METHOD';
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const VOTE_POST = 'VOTE_POST';
 export const CREATE_POST = 'CREATE_POST';
+export const EDIT_POST = 'EDIT_POST';
 
 export function getPostsSuccess (posts) {
   return {

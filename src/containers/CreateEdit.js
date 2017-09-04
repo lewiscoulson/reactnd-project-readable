@@ -4,19 +4,24 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import PostForm from '../components/PostForm';
-import {getPost, createPost} from '../actions/postActions';
+import EditPostForm from '../components/EditPostForm';
+import {getPost, createPost, editPost} from '../actions/postActions';
 
 class CreateEdit extends Component {
 	componentDidMount() {
+		if (this.props.match.params.id) {
+			this.props.getPost(this.props.match.params.id);
+		}
 	}
 
 	render() {
-		let {currentPost, createPost} = this.props;
+		let {currentPost, createPost, editPost} = this.props;
 		const isEditMode = this.props.match.params.id;
 
 		return (
 			<div>
-				<PostForm createPost={createPost} />
+				{!isEditMode && <PostForm createPost={createPost} />}
+				{isEditMode && <EditPostForm post={currentPost} editPost={editPost} />}
 			</div>
 		)
 	}
@@ -31,7 +36,8 @@ function mapStateToProps ({posts}) {
 function mapDispatchToProps (dispatch) {
   return {
   	getPost: (postID) => dispatch(getPost(postID)),
-  	createPost: (options) => dispatch(createPost(options))
+  	createPost: (options) => dispatch(createPost(options)),
+  	editPost: (options) => dispatch(editPost(options))
   }
 }
 
