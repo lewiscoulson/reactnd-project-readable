@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
 import Post from './Post';
 
 class Posts extends Component {
@@ -23,11 +22,11 @@ class Posts extends Component {
 		}
 		
 		return (<div>
-			<select value={sortMethod} onChange={(event) => {setPostsSortMethod(event.target.value)}}>
+			<select className="form-control" value={sortMethod} onChange={(event) => {setPostsSortMethod(event.target.value)}}>
 				<option value="voteScore">voteScore</option>
 				<option value="timestamp">timestamp</option>
 			</select>
-			<ul>
+			<ul className="list-group">
 				{sortedPosts && sortedPosts.filter(item => !item.deleted).map((item) => {
 					return (<Post post={item} />)
 				})}

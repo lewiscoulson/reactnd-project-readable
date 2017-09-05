@@ -6,14 +6,16 @@ class Categories extends Component {
 	render() {
 		let {categories} = this.props;
 		return (
-			<div>
-				<ul>
-					<Link to={'/'}>All</Link>
+			<nav>
+				<ul className="nav">
+					<li className="nav-item"><Link className="nav-link" to={'/'}>All</Link></li>
 					{categories && categories.map((item) => {
-						return (<Link to={`/category/${item.name}`}>{item.name}</Link>)
+						return (<li className="nav-item">
+							<Link className="nav-link" to={`/category/${item.name}`}>{item.name}</Link>
+						</li>)
 					})}
 				</ul>
-			</div>
+			</nav>
 		)
 	}
 }

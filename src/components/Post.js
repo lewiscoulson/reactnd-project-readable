@@ -12,15 +12,17 @@ class Post extends Component {
 		const {post, votePost, deletePost} = this.props;
 
 		return (
-			<div>
-				<Link to={`/post/${post.id}`}>{post.title}</Link>
+			<div className="list-group-item">
+				<Link className="h3" to={`/post/${post.id}`}>{post.title}</Link>
 				<div>author: {post.author}</div>
 				<div>votes: {post.voteScore}</div>
-				<Link to={`/createEdit/${post.id}`}>Edit</Link>
+				<div className="btn-group">
+					<Link className="btn btn-default" to={`/createEdit/${post.id}`}>Edit</Link>
+					<button className="btn btn-default" onClick={() => deletePost(post.id)}>Delete</button>
+				</div>
 				<PostVote
 					handleVote={votePost}
 					postID={post.id} />
-				<button onClick={() => deletePost(post.id)}>Delete</button>
 			</div>
 		)
 	}

@@ -28,7 +28,7 @@ class Root extends Component {
 					setPostsSortMethod={setPostsSortMethod}
 					posts={posts} />
 
-				<Link to="/createEdit">Add new post</Link>
+				<Link className="btn btn-primary" to="/createEdit">Add new post</Link>
 			</div>
 		)
 	}
