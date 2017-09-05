@@ -49,6 +49,8 @@ class Post extends Component {
 
 		return (
 			<div>
+				<h1>Readable</h1>
+
 				{currentPost && currentPost.deleted && <p>This post has been deleted.</p>}
 
 				{currentPost && <div>
@@ -57,11 +59,13 @@ class Post extends Component {
 					<div>comments: {currentPost.comments}</div>
 					<div>votes: {currentPost.voteScore}</div>
 					<p>{currentPost.body}</p>
-					<Link to={`/createEdit/${currentPost.id}`}>Edit</Link>
+					<div className="btn-group">
+						<Link className="btn btn-default" to={`/createEdit/${currentPost.id}`}>Edit</Link>
+						<button className="btn btn-default" onClick={() => deletePost(currentPost.id)}>Delete</button>
+					</div>
 					<PostVote
 						handleVote={votePost}
 						postID={currentPost.id} />
-					<button onClick={() => deletePost(currentPost.id)}>Delete</button>
 				</div>}
 
 				{currentPost && currentComments && <Comments

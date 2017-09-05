@@ -6,9 +6,9 @@ class CommentVote extends Component {
 		let {handleVote, commentID, postID} = this.props;
 
 		return (
-			<div>
-				<button onClick={() => handleVote(commentID, 'upVote', postID)}>upvote</button>
-				<button onClick={() => handleVote(commentID, 'downVote', postID)}>downvote</button>
+			<div className="btn-group">
+				<button className="btn btn-default" onClick={() => handleVote(commentID, 'upVote', postID)}>upvote</button>
+				<button className="btn btn-default" onClick={() => handleVote(commentID, 'downVote', postID)}>downvote</button>
 			</div>
 		)
 	}

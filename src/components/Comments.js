@@ -32,9 +32,8 @@ class Comments extends Component {
 
 		return (
 			<div>
-
-				<div>comments</div>
-				<select value={sortMethod} onChange={(event) => {setCommentsSortMethod(event.target.value)}}>
+				<h3>Comments</h3>
+				<select className="form-control" value={sortMethod} onChange={(event) => {setCommentsSortMethod(event.target.value)}}>
 					<option value="voteScore">voteScore</option>
 					<option value="timestamp">timestamp</option>
 				</select>
@@ -45,9 +44,10 @@ class Comments extends Component {
 							votes: {item.voteScore}
 							time: {item.timestamp}
 							<CommentVote commentID={item.id} postID={postID} handleVote={handleVote} />
-							<button onClick={() => handleEdit(item, postID)}>edit</button>
-							<button onClick={() => handleDelete(item.id, postID)}>delete</button>
-
+							<div className="btn-group">
+								<button className="btn btn-default" onClick={() => handleEdit(item, postID)}>edit</button>
+								<button className="btn btn-default" onClick={() => handleDelete(item.id, postID)}>delete</button>
+							</div>
 							{(currentComment && isEditing) && item.id === currentComment.id && <EditCommentForm
 								handleUpdate={handleUpdate}
 								comment={item}

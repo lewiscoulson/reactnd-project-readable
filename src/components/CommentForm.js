@@ -35,7 +35,7 @@ class CommentForm extends Component {
 					<textarea id="body" name="body"></textarea>
 				</div>
 				
-				<button type="submit">submit</button>
+				<button className="btn btn-primary" type="submit">submit</button>
 			</form>
 		)
 	}

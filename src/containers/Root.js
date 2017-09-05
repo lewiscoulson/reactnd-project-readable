@@ -20,6 +20,7 @@ class Root extends Component {
 
 		return (
 			<div>
+				<h1>Readable</h1>
 				<Categories
 					categories={categories} />
 
