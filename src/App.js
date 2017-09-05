@@ -18,16 +18,16 @@ class App extends Component {
     return (
       <div className="App">
         <Route exact path="/" render={() => (
-	        <Root />
-	    )} />
+          <Root />
+        )} />
 
-	    <Route exact path="/post/:id" component={Post} />
+  	    <Route exact path="/post/:id" component={Post} />
 
-	    <Route exact path="/category/:name" component={Category} />
+  	    <Route exact path="/category/:name" component={Category} />
 
-	    <Route exact path="/createEdit" component={CreateEdit} />
+  	    <Route exact path="/createEdit" component={CreateEdit} />
 
-	    <Route exact path="/createEdit/:id" component={CreateEdit} />
+  	    <Route exact path="/createEdit/:id" component={CreateEdit} />
       </div>
     );
   }

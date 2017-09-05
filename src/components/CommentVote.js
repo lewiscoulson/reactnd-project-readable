@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 class CommentVote extends Component {
-	componentDidMount() {
-	}
-
 	render() {
 		let {handleVote, commentID, postID} = this.props;
 

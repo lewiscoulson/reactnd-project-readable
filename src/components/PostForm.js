@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class PostForm extends Component {
-	componentDidMount() {
-	}
-
 	handleSubmit = (event) => {
 		event.preventDefault();
 

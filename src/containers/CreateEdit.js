@@ -37,7 +37,7 @@ function mapDispatchToProps (dispatch) {
   return {
   	getPost: (postID) => dispatch(getPost(postID)),
   	createPost: (options) => dispatch(createPost(options)),
-  	editPost: (options) => dispatch(editPost(options))
+  	editPost: (postID, options) => dispatch(editPost(postID, options))
   }
 }
 

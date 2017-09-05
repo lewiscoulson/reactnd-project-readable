@@ -11,9 +11,6 @@ class Comments extends Component {
 		body: ''
 	}
 
-	componentDidMount() {
-	}
-
 	render() {
 		let {comments, handleEdit, handleDelete, sortMethod, setCommentsSortMethod, handleVote, handleUpdate,
 		currentComment, isEditing, postID} = this.props;
@@ -50,7 +47,6 @@ class Comments extends Component {
 							<CommentVote commentID={item.id} postID={postID} handleVote={handleVote} />
 							<button onClick={() => handleEdit(item, postID)}>edit</button>
 							<button onClick={() => handleDelete(item.id, postID)}>delete</button>
-
 
 							{(currentComment && isEditing) && item.id === currentComment.id && <EditCommentForm
 								handleUpdate={handleUpdate}

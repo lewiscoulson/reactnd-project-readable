@@ -8,9 +8,6 @@ import PostVote from '../components/PostVote';
 import {deletePost, votePost} from '../actions/postActions';
 
 class Post extends Component {
-	componentDidMount() {
-	}
-
 	render() {
 		const {post, votePost, deletePost} = this.props;
 
@@ -18,7 +15,6 @@ class Post extends Component {
 			<div>
 				<Link to={`/post/${post.id}`}>{post.title}</Link>
 				<div>author: {post.author}</div>
-				<div>comments: {post.comments}</div>
 				<div>votes: {post.voteScore}</div>
 				<Link to={`/createEdit/${post.id}`}>Edit</Link>
 				<PostVote
@@ -31,8 +27,7 @@ class Post extends Component {
 }
 
 function mapStateToProps () {
-  return {
-  }
+  return {}
 }
 
 function mapDispatchToProps (dispatch) {

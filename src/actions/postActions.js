@@ -162,3 +162,27 @@ export function createPost (options) {
 		});
 	}; 
 }
+
+export function editPostSuccess (post) {
+  return {
+    type: EDIT_POST,
+    post
+  }
+}
+
+export function editPost (postID, options) {
+	return function (dispatch) {
+		return fetch(`http://localhost:5001/posts/${postID}`, 
+			{ 
+				headers: { 'Authorization': 'whatever-you-want', 'Content-Type': 'application/json'},
+				method: 'PUT',
+				body: JSON.stringify(options)
+			})
+		.then((response) => {
+			return response.json()
+		})
+		.then((post) => {
+			dispatch(editPostSuccess(post))
+		});
+	}; 
+}

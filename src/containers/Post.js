@@ -49,6 +49,8 @@ class Post extends Component {
 
 		return (
 			<div>
+				{currentPost && currentPost.deleted && <p>This post has been deleted.</p>}
+
 				{currentPost && <div>
 					<h2>{currentPost.title}</h2>
 					<div>author: {currentPost.author}</div>

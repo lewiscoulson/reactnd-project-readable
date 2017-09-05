@@ -5,17 +5,13 @@ import { Link } from 'react-router-dom';
 class EditPostForm extends Component {
 	state = {
 		title: '',
-		body: '',
-		category: '',
-		author: ''
+		body: ''
 	}
 
 	componentWillReceiveProps(props) {
 		this.setState({
 			title: props.post.title,
-			body: props.post.body,
-			category: props.post.category,
-			author: props.post.author
+			body: props.post.body
 		});
 	}
 
@@ -31,18 +27,6 @@ class EditPostForm extends Component {
 		})
 	}
 
-	handleChangeCategory = (event) => {
-		this.setState({
-			category: event.target.value
-		})
-	}
-
-	handleChangeAuthor = (event) => {
-		this.setState({
-			author: event.target.value
-		})
-	}
-
 	handleSubmit = (event) => {
 		event.preventDefault();
 
@@ -53,10 +37,7 @@ class EditPostForm extends Component {
 			options[elems[i].name] = elems[i].value;
 		}
 
-		options.id = Math.floor(Math.random() * 1000000);
-		options.timestamp = new Date().getTime();
-
-		this.props.createPost(options);
+		this.props.editPost(this.props.post.id, options);
 	}
 
 	render() {
@@ -72,14 +53,6 @@ class EditPostForm extends Component {
 				<div>
 					<label htmlFor="body">body</label>
 					<textarea name="body" id="body" value={this.state.body} onChange={this.handleChangeBody}></textarea>
-				</div>
-				<div>
-					<label htmlFor="category">category</label>
-					<input type="text" name="category" id="category" value={this.state.category} onChange={this.handleChangeCategory} />
-				</div>
-				<div>
-					<label htmlFor="author">author</label>
-					<input type="text" name="author" id="author" value={this.state.author} onChange={this.handleChangeAuthor} />
 				</div>
 				<button type="submit">add post</button>
 			</form>

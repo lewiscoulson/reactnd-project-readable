@@ -3,13 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class CommentForm extends Component {
-	componentDidMount() {
-	}
-
-	componentWillUpdate(nextProps, nextState) {
-
-	}
-
 	handleSubmit = (event) => {
 		event.preventDefault();
 
