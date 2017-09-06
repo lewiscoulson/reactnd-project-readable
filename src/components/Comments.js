@@ -12,8 +12,8 @@ class Comments extends Component {
 	}
 
 	render() {
-		let {comments, handleEdit, handleDelete, sortMethod, setCommentsSortMethod, handleVote, handleUpdate,
-		currentComment, isEditing, postID} = this.props;
+		let {comments, handleEdit, handleDelete, sortMethod, setCommentsSortMethod, handleVote, 
+		handleUpdate, currentComment, isEditing, postID} = this.props;
 		let sortedComments;
 
 		if (comments) {

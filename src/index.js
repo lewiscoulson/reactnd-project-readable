@@ -13,11 +13,7 @@ import { BrowserRouter } from 'react-router-dom';
 import rootReducer from './reducers/';
 
 const logger = store => next => action => {
-  console.group(action.type)
-  console.info('dispatching', action)
   let result = next(action)
-  console.log('next state', store.getState())
-  console.groupEnd(action.type)
   return result
 }
 

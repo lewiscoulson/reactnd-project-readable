@@ -42,18 +42,23 @@ class Post extends Component {
 		let {currentPost, currentComment, currentComments, sortMethod, setCommentsSortMethod,
 		deletePost, votePost, voteComment, addComment, editComment, deleteComment, updateComment, isEditing} = this.props;
 		let formattedTime;
+		let isEmptyCurrentPost = true;
 
 		if (currentPost) {
 			formattedTime = new Date(currentPost.timestamp);
+
+			if (Object.keys(currentPost).length >= 1) {
+				isEmptyCurrentPost = false;
+			}
 		}
 
 		return (
 			<div>
 				<h1>Readable</h1>
 
-				{currentPost && currentPost.deleted && <p>This post has been deleted.</p>}
+				{isEmptyCurrentPost && <p>This post has been deleted.</p>}
 
-				{currentPost && <div>
+				{!isEmptyCurrentPost && currentPost && <div>
 					<h2>{currentPost.title}</h2>
 					<div>author: {currentPost.author}</div>
 					<div>comments: {currentPost.comments}</div>
@@ -68,7 +73,7 @@ class Post extends Component {
 						postID={currentPost.id} />
 				</div>}
 
-				{currentPost && currentComments && <Comments
+				{!isEmptyCurrentPost && currentPost && currentComments && <Comments
 					postID={currentPost.id}
 					handleVote={voteComment}
 					handleEdit={editComment}
@@ -80,7 +85,7 @@ class Post extends Component {
 					isEditing={isEditing}
 					comments={currentComments} />}
 
-				{currentPost && <CommentForm
+				{!isEmptyCurrentPost && currentPost && <CommentForm
 					post={currentPost}
 					addComment={addComment} />}
 			</div>

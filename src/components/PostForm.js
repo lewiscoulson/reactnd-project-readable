@@ -17,6 +17,7 @@ class PostForm extends Component {
 		options.timestamp = new Date().getTime();
 
 		this.props.createPost(options);
+		window.location = '/';
 	}
 
 	render() {
@@ -27,19 +28,19 @@ class PostForm extends Component {
 				<h3>Create new post</h3>
 				<div>
 					<label htmlFor="title">title</label>
-					<input type="text" name="title" id="title" />
+					<input type="text" name="title" id="title" required />
 				</div>
 				<div>
 					<label htmlFor="body">body</label>
-					<textarea name="body" id="body"></textarea>
+					<textarea name="body" id="body" required></textarea>
 				</div>
 				<div>
 					<label htmlFor="category">category</label>
-					<input type="text" name="category" id="category" />
+					<input type="text" name="category" id="category" required />
 				</div>
 				<div>
 					<label htmlFor="author">author</label>
-					<input type="text" name="author" id="author" />
+					<input type="text" name="author" id="author" required />
 				</div>
 				<button type="submit">add post</button>
 			</form>
