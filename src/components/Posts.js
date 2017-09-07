@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import Post from './Post';
 
 class Posts extends Component {
@@ -27,8 +26,8 @@ class Posts extends Component {
 				<option value="timestamp">timestamp</option>
 			</select>
 			<ul className="list-group">
-				{sortedPosts && sortedPosts.filter(item => !item.deleted).map((item) => {
-					return (<Post post={item} />)
+				{sortedPosts && sortedPosts.filter(item => !item.deleted).map((item, index) => {
+					return (<Post key={index} post={item} />)
 				})}
 			</ul>
 		</div>)

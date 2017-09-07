@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import CommentVote from './CommentVote';
 import EditCommentForm from './EditCommentForm';
@@ -38,8 +36,8 @@ class Comments extends Component {
 					<option value="timestamp">timestamp</option>
 				</select>
 				<ul>
-					{comments && comments.map((item) => {
-						return (<div>
+					{sortedComments && sortedComments.map((item, index) => {
+						return (<div key={index}>
 							{item.body} by {item.author}
 							votes: {item.voteScore}
 							time: {item.timestamp}

@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 class CommentForm extends Component {
 	handleSubmit = (event) => {
@@ -21,8 +19,6 @@ class CommentForm extends Component {
 	}
 
 	render() {
-		const {post, addComment, comment} = this.props;
-
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<h3>Add new comment</h3>

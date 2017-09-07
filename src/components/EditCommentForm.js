@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 class EditCommentForm extends Component {
 	state = {}
@@ -28,8 +26,6 @@ class EditCommentForm extends Component {
 	}
 
 	render() {
-		const {comment} = this.props;
-
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<input name="author" type="text" value={this.state.author} />

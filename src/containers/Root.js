@@ -1,29 +1,21 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import Categories from '../components/Categories';
 import Posts from '../components/Posts';
 
-import {getCategories} from '../actions/categoryActions';
 import {getPosts, setPostsSortMethod} from '../actions/postActions';
 
 class Root extends Component {
 	componentDidMount() {
-		this.props.getCategories();
 		this.props.getPosts();
 	}
 
 	render() {
-		let {categories, posts, sortMethod, setPostsSortMethod} = this.props;
+		let {posts, sortMethod, setPostsSortMethod} = this.props;
 
 		return (
 			<div>
-				<h1>Readable</h1>
-				<Categories
-					categories={categories} />
-
 				<Posts
 					sortMethod={sortMethod}
 					setPostsSortMethod={setPostsSortMethod}
@@ -35,9 +27,8 @@ class Root extends Component {
 	}
 }
 
-function mapStateToProps ({categories, posts}) {
+function mapStateToProps ({posts}) {
   return {
-  	categories: categories.categories,
   	posts: posts.posts,
   	sortMethod: posts.sortMethod
   }
@@ -45,7 +36,6 @@ function mapStateToProps ({categories, posts}) {
 
 function mapDispatchToProps (dispatch) {
   return {
-  	getCategories: () => dispatch(getCategories()),
   	getPosts: () => dispatch(getPosts()),
   	setPostsSortMethod: (sortMethod) => dispatch(setPostsSortMethod(sortMethod))
   }

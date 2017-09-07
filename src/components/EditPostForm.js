@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 class EditPostForm extends Component {
 	state = {
@@ -41,8 +39,6 @@ class EditPostForm extends Component {
 	}
 
 	render() {
-		const {post} = this.props;
-
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<h3>Edit post</h3>

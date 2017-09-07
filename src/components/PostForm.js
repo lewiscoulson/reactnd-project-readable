@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 class PostForm extends Component {
 	handleSubmit = (event) => {
@@ -21,8 +19,6 @@ class PostForm extends Component {
 	}
 
 	render() {
-		const {createPost} = this.props;
-
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<h3>Create new post</h3>

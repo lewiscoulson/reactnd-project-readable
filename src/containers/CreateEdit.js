@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Categories from '../components/Categories';
 import PostForm from '../components/PostForm';
 import EditPostForm from '../components/EditPostForm';
 import {getPost, createPost, editPost} from '../actions/postActions';
@@ -16,15 +13,11 @@ class CreateEdit extends Component {
 	}
 
 	render() {
-		let {currentPost, createPost, editPost, categories} = this.props;
+		let {currentPost, createPost, editPost} = this.props;
 		const isEditMode = this.props.match.params.id;
 
 		return (
 			<div>
-				<h1>Readable</h1>
-				
-				<Categories
-					categories={categories} />
 				{!isEditMode && <PostForm createPost={createPost} />}
 				{isEditMode && <EditPostForm post={currentPost} editPost={editPost} />}
 			</div>
@@ -32,9 +25,8 @@ class CreateEdit extends Component {
 	}
 }
 
-function mapStateToProps ({posts, categories}) {
+function mapStateToProps ({posts}) {
   return {
-  	categories: categories.categories,
   	currentPost: posts.currentPost
   }
 }

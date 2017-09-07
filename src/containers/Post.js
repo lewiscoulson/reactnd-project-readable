@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -41,12 +40,9 @@ class Post extends Component {
 	render() {
 		let {currentPost, currentComment, currentComments, sortMethod, setCommentsSortMethod,
 		deletePost, votePost, voteComment, addComment, editComment, deleteComment, updateComment, isEditing} = this.props;
-		let formattedTime;
 		let isEmptyCurrentPost = true;
 
 		if (currentPost) {
-			formattedTime = new Date(currentPost.timestamp);
-
 			if (Object.keys(currentPost).length >= 1) {
 				isEmptyCurrentPost = false;
 			}
@@ -54,8 +50,6 @@ class Post extends Component {
 
 		return (
 			<div>
-				<h1>Readable</h1>
-
 				{isEmptyCurrentPost && <p>This post has been deleted.</p>}
 
 				{!isEmptyCurrentPost && currentPost && <div>

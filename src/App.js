@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux'
 
 import Root from './containers/Root';
 import Category from './containers/Category';
 import Post from './containers/Post';
 import CreateEdit from './containers/CreateEdit';
 import NoMatch from './components/NoMatch';
-
-import {getPosts} from './actions/postActions';
-import {getCategories} from './actions/categoryActions';
+import Categories from './components/Categories';
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">
+        <h1>Readable</h1>
+        <Categories />
+
         <Switch>
           <Route exact path="/" render={() => (
             <Root />
